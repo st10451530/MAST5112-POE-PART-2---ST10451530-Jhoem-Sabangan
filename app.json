@@ -4,10 +4,12 @@
     "slug": "christoffels-kitchen",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1a1a1a"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -17,11 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#1a1a1a"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "bundler": "metro"
+      "favicon": "./assets/favicon.png"
     }
   }
 }
