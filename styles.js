@@ -237,6 +237,11 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primaryLight,
   },
+  specialImageContent: {
+    width: '100%',
+    height: '100%',
+    borderRadius: borderRadius.round,
+  },
   specialEmoji: {
     fontSize: 32,
   },
@@ -423,6 +428,11 @@ export const styles = StyleSheet.create({
     marginRight: spacing.md,
     borderWidth: 2,
     borderColor: colors.primaryLight,
+  },
+  menuItemImageContent: {
+    width: '100%',
+    height: '100%',
+    borderRadius: borderRadius.lg,
   },
   menuItemEmoji: {
     fontSize: 26,

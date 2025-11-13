@@ -8,8 +8,10 @@ import {
   Animated,
   StatusBar,
   Modal,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
+
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles, colors } from './styles';
 
@@ -33,7 +35,7 @@ export default function App() {
   
   const [newMenuItem, setNewMenuItem] = useState({
     name: '', description: '', price: '', category: 'signature',
-    serves: '', prepTime: '', image: '🍽️'
+    serves: '', prepTime: '', image: '🍽️', imageUrl: ''
   });
 
   const emojiOptions = ['🍽️', '🥩', '🎨', '🐟', '💼', '💍', '🕯️', '🎄', '📦', '🍱', '🌹', '👨‍👩‍👧‍👦', '🌱', '🧪', '🌾', '🌍'];
@@ -43,73 +45,73 @@ export default function App() {
     signature: [
       {
         id: 1, name: 'Signature Tasting Menu', description: '7-course gourmet experience showcasing chef\'s finest creations',
-        price: 125.00, image: '🍽️', category: 'signature', serves: '2-4 guests', prepTime: '3-4 hours'
+        price: 125.00, image: '🍽️', category: 'signature', serves: '2-4 guests', prepTime: '3-4 hours', imageUrl: ''
       },
       {
         id: 2, name: 'Luxury Surf & Turf', description: 'Premium wagyu beef with lobster, seasonal vegetables',
-        price: 95.00, image: '🥩', category: 'signature', serves: '2 guests', prepTime: '2-3 hours'
+        price: 95.00, image: '🥩', category: 'signature', serves: '2 guests', prepTime: '2-3 hours', imageUrl: ''
       },
       {
         id: 3, name: 'Chef\'s Degustation', description: '9-course journey through modern culinary techniques',
-        price: 150.00, image: '🎨', category: 'signature', serves: '2-6 guests', prepTime: '4-5 hours'
+        price: 150.00, image: '🎨', category: 'signature', serves: '2-6 guests', prepTime: '4-5 hours', imageUrl: ''
       },
       {
         id: 4, name: 'Mediterranean Feast', description: 'Fresh seafood, grilled vegetables, and artisan breads',
-        price: 85.00, image: '🐟', category: 'signature', serves: '4-6 guests', prepTime: '2.5 hours'
+        price: 85.00, image: '🐟', category: 'signature', serves: '4-6 guests', prepTime: '2.5 hours', imageUrl: ''
       }
     ],
     catering: [
       {
         id: 5, name: 'Corporate Event Package', description: 'Full-service catering for business events (15-50 guests)',
-        price: 45.00, image: '💼', category: 'catering', serves: 'Per person', prepTime: 'Custom'
+        price: 45.00, image: '💼', category: 'catering', serves: 'Per person', prepTime: 'Custom', imageUrl: ''
       },
       {
         id: 6, name: 'Wedding Reception', description: 'Complete wedding catering with multiple courses',
-        price: 75.00, image: '💍', category: 'catering', serves: 'Per person', prepTime: 'Full day'
+        price: 75.00, image: '💍', category: 'catering', serves: 'Per person', prepTime: 'Full day', imageUrl: ''
       },
       {
         id: 7, name: 'Intimate Dinner Party', description: 'Personalized menu for special occasions (8-12 guests)',
-        price: 65.00, image: '🕯️', category: 'catering', serves: 'Per person', prepTime: '3-4 hours'
+        price: 65.00, image: '🕯️', category: 'catering', serves: 'Per person', prepTime: '3-4 hours', imageUrl: ''
       },
       {
         id: 8, name: 'Holiday Celebration', description: 'Traditional and modern dishes for holiday gatherings',
-        price: 55.00, image: '🎄', category: 'catering', serves: 'Per person', prepTime: 'Custom'
+        price: 55.00, image: '🎄', category: 'catering', serves: 'Per person', prepTime: 'Custom', imageUrl: ''
       }
     ],
     mealPlans: [
       {
         id: 9, name: 'Weekly Meal Prep', description: '12 prepared meals, chef-curated menu for the week',
-        price: 180.00, image: '📦', category: 'mealPlans', serves: '12 meals', prepTime: 'Weekly delivery'
+        price: 180.00, image: '📦', category: 'mealPlans', serves: '12 meals', prepTime: 'Weekly delivery', imageUrl: ''
       },
       {
         id: 10, name: 'Gourmet Lunch Box', description: 'Premium lunch options delivered daily (5-day plan)',
-        price: 75.00, image: '🍱', category: 'mealPlans', serves: '5 lunches', prepTime: 'Daily'
+        price: 75.00, image: '🍱', category: 'mealPlans', serves: '5 lunches', prepTime: 'Daily', imageUrl: ''
       },
       {
         id: 11, name: 'Date Night Package', description: 'Romantic dinner for two with wine pairing suggestions',
-        price: 110.00, image: '🌹', category: 'mealPlans', serves: '2 guests', prepTime: '2 hours'
+        price: 110.00, image: '🌹', category: 'mealPlans', serves: '2 guests', prepTime: '2 hours', imageUrl: ''
       },
       {
         id: 12, name: 'Family Feast', description: 'Complete family dinner with multiple courses',
-        price: 95.00, image: '👨‍👩‍👧‍👦', category: 'mealPlans', serves: '4-6 guests', prepTime: '2-3 hours'
+        price: 95.00, image: '👨‍👩‍👧‍👦', category: 'mealPlans', serves: '4-6 guests', prepTime: '2-3 hours', imageUrl: ''
       }
     ],
     specialties: [
       {
         id: 13, name: 'Vegan Gourmet Experience', description: 'Plant-based fine dining with innovative techniques',
-        price: 70.00, image: '🌱', category: 'specialties', serves: '2-4 guests', prepTime: '2.5 hours'
+        price: 70.00, image: '🌱', category: 'specialties', serves: '2-4 guests', prepTime: '2.5 hours', imageUrl: ''
       },
       {
         id: 14, name: 'Molecular Gastronomy', description: 'Science meets cuisine with unique presentations',
-        price: 130.00, image: '🧪', category: 'specialties', serves: '2-6 guests', prepTime: '4 hours'
+        price: 130.00, image: '🧪', category: 'specialties', serves: '2-6 guests', prepTime: '4 hours', imageUrl: ''
       },
       {
         id: 15, name: 'Farm-to-Table Experience', description: 'Locally sourced, seasonal ingredients prepared fresh',
-        price: 80.00, image: '🌾', category: 'specialties', serves: '2-4 guests', prepTime: '3 hours'
+        price: 80.00, image: '🌾', category: 'specialties', serves: '2-4 guests', prepTime: '3 hours', imageUrl: ''
       },
       {
         id: 16, name: 'International Fusion', description: 'Blend of Asian, European, and American flavors',
-        price: 75.00, image: '🌍', category: 'specialties', serves: '2-4 guests', prepTime: '2.5 hours'
+        price: 75.00, image: '🌍', category: 'specialties', serves: '2-4 guests', prepTime: '2.5 hours', imageUrl: ''
       }
     ]
   });
@@ -172,7 +174,7 @@ export default function App() {
       Alert.alert('Cart Empty', 'Please add some items to your cart first.');
       return;
     }
-    Alert.alert('Order Confirmed!', `Your order of $${getTotalPrice()} has been placed successfully! Chef Christoffel will contact you shortly to finalize details.`, [
+    Alert.alert('Order Confirmed!', `Your order of R${getTotalPrice()} has been placed successfully! Chef Christoffel will contact you shortly to finalize details.`, [
       { text: 'Perfect!', onPress: () => { setCart([]); setActiveTab('home'); } }
     ]);
   };
@@ -203,6 +205,7 @@ export default function App() {
       description: newMenuItem.description,
       price: parseFloat(newMenuItem.price),
       image: newMenuItem.image,
+      imageUrl: newMenuItem.imageUrl || '',
       category: newMenuItem.category,
       serves: newMenuItem.serves || '2-4 guests',
       prepTime: newMenuItem.prepTime || '2-3 hours'
@@ -221,7 +224,7 @@ export default function App() {
     setAddItemModalVisible(false);
     setNewMenuItem({
       name: '', description: '', price: '', category: 'signature',
-      serves: '', prepTime: '', image: '🍽️'
+      serves: '', prepTime: '', image: '🍽️', imageUrl: ''
     });
   };
 
@@ -262,10 +265,14 @@ export default function App() {
           {menuCategories.signature.slice(0, 3).map((item) => (
             <Animated.View key={item.id} style={[styles.specialCard, { opacity: fadeAnim }]}>
               <View style={styles.specialImage}>
-                <Text style={styles.specialEmoji}>{item.image}</Text>
+                {item.imageUrl ? (
+                  <Image source={{ uri: item.imageUrl }} style={styles.specialImageContent} resizeMode="cover" />
+                ) : (
+                  <Text style={styles.specialEmoji}>{item.image}</Text>
+                )}
               </View>
               <Text style={styles.specialName}>{item.name}</Text>
-              <Text style={styles.specialPrice}>${item.price}</Text>
+              <Text style={styles.specialPrice}>R{item.price}</Text>
               <Text style={styles.specialServes}>{item.serves}</Text>
               <TouchableOpacity style={styles.specialButton} onPress={() => addToCart(item)}>
                 <Text style={styles.specialButtonText}>Add to Cart</Text>
@@ -375,7 +382,7 @@ export default function App() {
           <Icon emoji="💰" size={24} />
           <View style={styles.averagePriceInfo}>
             <Text style={styles.averagePriceLabel}>Average Price</Text>
-            <Text style={styles.averagePriceValue}>${calculateAveragePrice()}</Text>
+            <Text style={styles.averagePriceValue}>R{calculateAveragePrice()}</Text>
           </View>
           <Text style={styles.averagePriceCategory}>for {selectedCategory} items</Text>
         </LinearGradient>
@@ -385,7 +392,11 @@ export default function App() {
         {menuItems.map((item) => (
           <Animated.View key={item.id} style={[styles.menuItem, { opacity: fadeAnim }]}>
             <View style={styles.menuItemImage}>
-              <Text style={styles.menuItemEmoji}>{item.image}</Text>
+              {item.imageUrl ? (
+                <Image source={{ uri: item.imageUrl }} style={styles.menuItemImageContent} resizeMode="cover" />
+              ) : (
+                <Text style={styles.menuItemEmoji}>{item.image}</Text>
+              )}
             </View>
             <View style={styles.menuItemInfo}>
               <Text style={styles.menuItemName}>{item.name}</Text>
@@ -394,7 +405,7 @@ export default function App() {
                 <Text style={styles.menuItemMetaText}>👥 {item.serves}</Text>
                 <Text style={styles.menuItemMetaText}>⏱️ {item.prepTime}</Text>
               </View>
-              <Text style={styles.menuItemPrice}>${item.price.toFixed(2)}</Text>
+              <Text style={styles.menuItemPrice}>R{item.price.toFixed(2)}</Text>
             </View>
             <TouchableOpacity style={styles.addToCartButton} onPress={() => addToCart(item)}>
               <Icon emoji="+" size={24} />
@@ -429,11 +440,15 @@ export default function App() {
             {cart.map((item) => (
               <View key={item.id} style={styles.cartItem}>
                 <View style={styles.cartItemImage}>
-                  <Text style={styles.cartItemEmoji}>{item.image}</Text>
+                  {item.imageUrl ? (
+                    <Image source={{ uri: item.imageUrl }} style={styles.cartItemImageContent} resizeMode="cover" />
+                  ) : (
+                    <Text style={styles.cartItemEmoji}>{item.image}</Text>
+                  )}
                 </View>
                 <View style={styles.cartItemInfo}>
                   <Text style={styles.cartItemName}>{item.name}</Text>
-                  <Text style={styles.cartItemPrice}>${item.price.toFixed(2)} each</Text>
+                  <Text style={styles.cartItemPrice}>R{item.price.toFixed(2)} each</Text>
                   <Text style={styles.cartItemServes}>{item.serves}</Text>
                 </View>
                 <View style={styles.quantityControls}>
@@ -455,7 +470,7 @@ export default function App() {
           <View style={styles.cartFooter}>
             <View style={styles.totalContainer}>
               <Text style={styles.totalLabel}>Total Amount:</Text>
-              <Text style={styles.totalPrice}>${getTotalPrice()}</Text>
+              <Text style={styles.totalPrice}>R{getTotalPrice()}</Text>
             </View>
             <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
               <LinearGradient colors={[colors.primary, colors.primaryLight]} style={styles.checkoutButtonGradient}>
@@ -490,7 +505,7 @@ export default function App() {
           </View>
           <View style={styles.statCardProfile}>
             <Icon emoji="💰" size={28} />
-            <Text style={styles.statNumberProfile}>${calculateAveragePrice()}</Text>
+            <Text style={styles.statNumberProfile}>R{calculateAveragePrice()}</Text>
             <Text style={styles.statLabelProfile}>Avg Price</Text>
           </View>
           <View style={styles.statCardProfile}>
@@ -688,6 +703,13 @@ export default function App() {
               <TextInput style={styles.input} placeholder="e.g., 2-4 guests" value={newMenuItem.serves} onChangeText={(text) => setNewMenuItem({...newMenuItem, serves: text})} />
               <Text style={styles.inputLabel}>Preparation Time</Text>
               <TextInput style={styles.input} placeholder="e.g., 2-3 hours" value={newMenuItem.prepTime} onChangeText={(text) => setNewMenuItem({...newMenuItem, prepTime: text})} />
+              <Text style={styles.inputLabel}>Image URL</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="https://example.com/my-delicious-meal.jpg"
+                value={newMenuItem.imageUrl}
+                onChangeText={(text) => setNewMenuItem({ ...newMenuItem, imageUrl: text })}
+              />
               <Text style={styles.inputLabel}>Select Emoji</Text>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.emojiPicker}>
                 {emojiOptions.map((emoji, index) => (
